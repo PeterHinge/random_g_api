@@ -158,8 +158,8 @@ class Session {
 
 		//Create pixel array of drawing
 		let smallCanvas = document.createElement('canvas');
-		smallCanvas.width = 32;
-		smallCanvas.height = 32;
+		smallCanvas.width = 64;
+		smallCanvas.height = 64;
 		smallCanvas.getContext('2d').drawImage(this.canvas, this.x1-5, this.y1-55-5, this.x2-this.x1+10, this.y2-this.y1+10, 0, 0, smallCanvas.width, smallCanvas.height);
 
 		let allPixels = smallCanvas.getContext('2d').getImageData(0, 0, smallCanvas.width, smallCanvas.height).data;
@@ -182,7 +182,25 @@ class Session {
 
 	}
 
-	aiPrediction() {
-		console.log("hi")
+	async aiPrediction() {
+		const url = "https://drive.google.com/uc?id=1h3qxHi-mQ6X4bbCO8lA0KM0idrvHEM46";
+		const model = await tf.loadLayersModel(url);
+		
+		//Create pixel array of drawing
+		let smallCanvas = document.createElement('canvas');
+		smallCanvas.width = 128;
+		smallCanvas.height = 128;
+		smallCanvas.getContext('2d').drawImage(this.canvas, this.x1-5, this.y1-55-5, this.x2-this.x1+10, this.y2-this.y1+10, 0, 0, smallCanvas.width, smallCanvas.height);
+
+		let allPixels = smallCanvas.getContext('2d').getImageData(0, 0, smallCanvas.width, smallCanvas.height).data;
+
+		let binaryPixels = [];
+
+		for (let i=3; i<allPixels.length; i+=4) {
+			binaryPixels.push([allPixels[i]])
+		}
+
+		console.log(binaryPixels)
+
 	}
 }
