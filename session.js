@@ -183,7 +183,7 @@ class Session {
 	}
 
 	async aiPrediction() {
-		const model = await tf.loadGraphModel('https://github.com/PeterHinge/random_g_api/blob/master/tfjsmodel/model.json');
+		const model = await tf.loadGraphModel('https://github.com/PeterHinge/random_g_api/tree/master/tfjsmodel');
 		console.log(model)
 		
 		//Create pixel array of drawing
