@@ -56,9 +56,11 @@ canvas.addEventListener("touchstart", function (e) {
     	clientX: touch.clientX,
     	clientY: touch.clientY
   	});
+  	e.preventDefault();
   	beginDraw(mouseEvent);
 }, false);
 canvas.addEventListener("touchend", function (e) {
+	e.preventDefault();
   endDraw();
 }, false);
 canvas.addEventListener("touchmove", function (e) {
@@ -67,6 +69,7 @@ canvas.addEventListener("touchmove", function (e) {
     clientX: touch.clientX,
     clientY: touch.clientY
   });
+  e.preventDefault();
   draw(mouseEvent);
 }, false);
 
@@ -78,20 +81,3 @@ function getTouchPos(canvasDom, touchEvent) {
     y: touchEvent.touches[0].clientY - rect.top
   };
 }
-
-// Prevent scrolling when touching the canvas
-document.body.addEventListener("touchstart", function (e) {
-  if (e.target == canvas) {
-    e.preventDefault();
-  }
-}, false);
-document.body.addEventListener("touchend", function (e) {
-  if (e.target == canvas) {
-    e.preventDefault();
-  }
-}, false);
-document.body.addEventListener("touchmove", function (e) {
-  if (e.target == canvas) {
-    e.preventDefault();
-  }
-}, false);
