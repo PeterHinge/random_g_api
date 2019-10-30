@@ -183,7 +183,7 @@ class Session {
 	}
 
 	async aiPrediction() {
-		const url = "https://drive.google.com/uc?id=1h3qxHi-mQ6X4bbCO8lA0KM0idrvHEM46";
+		const url = 'http://localhost:3000/';
 		const model = await tf.loadLayersModel(url);
 		
 		//Create pixel array of drawing
