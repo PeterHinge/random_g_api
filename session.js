@@ -183,8 +183,8 @@ class Session {
 	}
 
 	async aiPrediction() {
-		const url = 'http://localhost:3000/';
-		const model = await tf.loadLayersModel(url);
+		const model = await tf.loadGraphModel('https://github.com/PeterHinge/random_g_api/blob/master/tfjsmodel/model.json');
+		console.log(model)
 		
 		//Create pixel array of drawing
 		let smallCanvas = document.createElement('canvas');
