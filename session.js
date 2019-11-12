@@ -11,9 +11,10 @@ class Session {
 		this.canvas = canvas;
 		this.context = context;
 
-		//Possible symbol combinations
-		this.types = [["Friendly", "SFG"], ["Hostile", "SHG"]];
-		this.labels = [["Armored", "PUCA"], ["Infantry", "PUCI"]];
+		//Possible symbols
+		this.symbolLabels = [["SFGPUCA-----", "Friendly Armored"], ["SFGPUCF-----", "Friendly Artillery"], ["SFGPUCI-----", "Friendly Infantry"], 
+		["SFGPUCR-----", "Friendly Reconnaisance"], ["SHGPUCA-----", "Hostile Armored"], ["SHGPUCF-----", "Hostile Artillery"], 
+		["SHGPUCI-----", "Hostile Infantry"], ["SHGPUCR-----", "Hostile Reconnaisance"]];
 
 		//Drawing-size, Image and binary pixel array
 		this.x1 = null;
@@ -26,9 +27,9 @@ class Session {
 		//Sets current symbol-values
 		this.isDrawing = false;
 		this.timeStart = null;
-		this.currentSymbol = [this.types[Math.floor(this.types.length * Math.random())], this.labels[Math.floor(this.labels.length * Math.random())]];
-		this.currentSymbolName = [this.currentSymbol[0][0], this.currentSymbol[1][0]]
-		this.currentSymbolCode = this.currentSymbol[0][1] + this.currentSymbol[1][1] + "-----";
+		this.currentSymbol = this.symbolLabels[Math.floor(this.symbolLabels.length * Math.random())];
+		this.currentSymbolCode = this.currentSymbol[0]
+		this.currentSymbolName = this.currentSymbol[1]
 		this.currentSymbolImage = document.createElement("img");
 		this.currentSymbolImage.src = this.currentSymbolCode + ".png";
 		this.currentSymbolImage2 = document.createElement("img");
@@ -37,8 +38,8 @@ class Session {
 		//Sends current symbol-values and drawings to HTML
 		document.getElementById("postSessionScreenBody1").appendChild(this.currentSymbolImage);
 		document.getElementById("preSessionScreenBody1").appendChild(this.currentSymbolImage2);
-		document.getElementById("symbolToDraw1").innerHTML = this.currentSymbolName[0] + " - " + this.currentSymbolName[1];
-		document.getElementById("symbolToDraw2").innerHTML = this.currentSymbolName[0] + " - " + this.currentSymbolName[1];
+		document.getElementById("symbolToDraw1").innerHTML = this.currentSymbolName
+		document.getElementById("symbolToDraw2").innerHTML = this.currentSymbolName
 	}
 
 	clearDrawing() {
@@ -107,21 +108,10 @@ class Session {
 
 		//google.script.run.submitToSheets(dataToSend)
 
-		console.log(this.x1);
-		console.log(this.y1);
-		console.log(this.x2);
-		console.log(this.y2);
-
-		console.log(this.xArray);
-		console.log(this.yArray);
-		console.log(this.tArray);
-		console.log(this.currentSymbol);
-		console.log(dataToSend);
-
 		this.clearDrawing();
 
 		//Shows current drawing on post drawing screen
-		document.getElementById("symbolToDraw3").innerHTML = this.currentSymbolName[0] + " - " + this.currentSymbolName[1];
+		document.getElementById("symbolToDraw3").innerHTML = this.currentSymbolName
 
 		//Removing the old symbol image and adding the one corresponding to the currently drawn symbol
 		document.getElementById("postSessionScreenBody1").removeChild(this.currentSymbolImage);
@@ -130,11 +120,11 @@ class Session {
 		document.getElementById("postSessionScreenBody1").appendChild(this.currentSymbolImage);
 
 		//Updating the next symbol to draw and shows it on pre drawing screen
-		this.currentSymbol = [this.types[Math.floor(this.types.length * Math.random())], this.labels[Math.floor(this.labels.length * Math.random())]];
-		this.currentSymbolName = [this.currentSymbol[0][0], this.currentSymbol[1][0]]
-		this.currentSymbolCode = this.currentSymbol[0][1] + this.currentSymbol[1][1] + "-----";
-		document.getElementById("symbolToDraw1").innerHTML = this.currentSymbolName[0] + " - " + this.currentSymbolName[1];
-		document.getElementById("symbolToDraw2").innerHTML = this.currentSymbolName[0] + " - " + this.currentSymbolName[1];
+		this.currentSymbol = this.symbolLabels[Math.floor(this.symbolLabels.length * Math.random())];
+		this.currentSymbolName = this.currentSymbol[1]
+		this.currentSymbolCode = this.currentSymbol[0]
+		document.getElementById("symbolToDraw1").innerHTML = this.currentSymbolName
+		document.getElementById("symbolToDraw2").innerHTML = this.currentSymbolName
 
 		document.getElementById("preSessionScreenBody1").removeChild(this.currentSymbolImage2);
 		this.currentSymbolImage2 = document.createElement("img");
@@ -172,18 +162,12 @@ class Session {
 
 		this.userDrawingArray = binaryPixels
 
-		console.log(allPixels)
-		console.log(binaryPixels)
-
-
-		console.log(newCanvas.width)
-		console.log(newCanvas.height)
-		console.log(this.userDrawing)
+		console.log(JSON.stringify(binaryPixels))
 
 	}
 
 	async aiPrediction() {
-		const model = await tf.loadGraphModel('https://github.com/PeterHinge/random_g_api/tree/master/tfjsmodel');
+		const model = await tf.loadLayersModel('https://www.dropbox.com/s/mllncpdzwjz0a28/model.json?dl=0');
 		console.log(model)
 		
 		//Create pixel array of drawing

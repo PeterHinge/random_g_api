@@ -25,7 +25,7 @@ function endDraw() {
 	session.currentT = [];
 
 	//AI prediction
-	session.aiPrediction()
+	//session.aiPrediction()
 }
 
 function draw(mousePosition) {
