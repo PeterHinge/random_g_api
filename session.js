@@ -34,12 +34,17 @@ class Session {
 		this.currentSymbolImage.src = this.currentSymbolCode + ".png";
 		this.currentSymbolImage2 = document.createElement("img");
 		this.currentSymbolImage2.src = this.currentSymbolCode + ".png";
+		this.currentSymbolImage3 = document.createElement("img");
+		this.currentSymbolImage3.src = this.currentSymbolCode + ".png";
 
 		//Sends current symbol-values and drawings to HTML
 		document.getElementById("postSessionScreenBody1").appendChild(this.currentSymbolImage);
 		document.getElementById("preSessionScreenBody1").appendChild(this.currentSymbolImage2);
+		document.getElementById("hintScreenBody1").appendChild(this.currentSymbolImage3);
 		document.getElementById("symbolToDraw1").innerHTML = this.currentSymbolName
 		document.getElementById("symbolToDraw2").innerHTML = this.currentSymbolName
+		document.getElementById("symbolToDraw3").innerHTML = this.currentSymbolName
+		document.getElementById("symbolToDraw4").innerHTML = this.currentSymbolName
 	}
 
 	clearDrawing() {
@@ -125,11 +130,16 @@ class Session {
 		this.currentSymbolCode = this.currentSymbol[0]
 		document.getElementById("symbolToDraw1").innerHTML = this.currentSymbolName
 		document.getElementById("symbolToDraw2").innerHTML = this.currentSymbolName
+		document.getElementById("symbolToDraw4").innerHTML = this.currentSymbolName
 
 		document.getElementById("preSessionScreenBody1").removeChild(this.currentSymbolImage2);
+		document.getElementById("hintScreenBody1").removeChild(this.currentSymbolImage3);
 		this.currentSymbolImage2 = document.createElement("img");
 		this.currentSymbolImage2.src = this.currentSymbolCode + ".png";
+		this.currentSymbolImage3 = document.createElement("img");
+		this.currentSymbolImage3.src = this.currentSymbolCode + ".png";
 		document.getElementById("preSessionScreenBody1").appendChild(this.currentSymbolImage2);
+		document.getElementById("hintScreenBody1").appendChild(this.currentSymbolImage3);
 
 	}
 

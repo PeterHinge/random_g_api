@@ -26,10 +26,14 @@
     <body>
 		<nav class="navbar navbar-dark bg-dark">
 		  <div class="input-group text-white">
-		    <button class="btn btn-primary" onclick="clearCanvas()">
+		    
+		    <button class="btn btn-danger" onclick="clearCanvas()">
 		      Clear!
 		    </button>
-
+		    &nbsp; &nbsp;
+		    <button class="btn btn-primary" data-toggle="modal" data-target="#hintScreen">
+		      Hint!
+		    </button>
 		    &nbsp; &nbsp;
 		    <button class="btn btn-success" data-toggle="modal" data-target="#postSessionScreen" onclick="submit()">
 		      Done!
@@ -69,6 +73,22 @@
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-primary btn-lg btn-block" data-dismiss="modal">I'm ready!</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+		<div class="modal fade" id="hintScreen" tabindex="-1" role="dialog" aria-labelledby="submit" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title">SITAWARE Sketch</h5>
+		      </div>
+		      <div class="modal-body" id="hintScreenBody1" style="text-align: center">
+		        <p>Hint! Please draw: <strong><span id="symbolToDraw4"></span></strong></p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-primary btn-lg btn-block" data-dismiss="modal">Okay thanks!</button>
 		      </div>
 		    </div>
 		  </div>
